@@ -16,7 +16,7 @@ Ou avec l'extension VS Code "Live Server", ou `npx serve`.
 
 ## 2. Où mettre le robot vidéo / les images
 
-- `/assets/robot-v2.mp4` → la vidéo du robot animé (déjà en place). Remplacez ce fichier par votre propre export pour changer l'animation ; gardez le même nom pour ne rien avoir à modifier dans le code.
+- `/assets/robot-final.mp4` → la vidéo du robot animé (déjà en place). Remplacez ce fichier par votre propre export pour changer l'animation ; gardez le même nom pour ne rien avoir à modifier dans le code.
 - `/assets/robot-fallback.png` → image affichée si la vidéo ne peut pas se charger. À remplacer par une capture représentative du robot si besoin.
 - `/assets/icons/` → icônes de l'application (192px, 512px, version "maskable", favicon, icône iOS). Régénérez-les si vous changez de logo.
 
@@ -49,7 +49,7 @@ js/
   speech.js             # reconnaissance vocale (Web Speech API)
   notifications.js      # notifications navigateur
 assets/
-  robot-v2.mp4
+  robot-final.mp4
   robot-fallback.png
   icons/
 manifest.json

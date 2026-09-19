@@ -132,12 +132,13 @@ button {
 
 .robot-stage {
   position: relative;
-  width: 40%;
-  aspect-ratio: 5 / 8;
+  width: 50%;
+  aspect-ratio: 2 / 5;
   flex-shrink: 0;
   overflow: hidden;
-  -webkit-mask-image: radial-gradient(ellipse 94% 96% at 50% 50%, #000 78%, transparent 100%);
-  mask-image: radial-gradient(ellipse 94% 96% at 50% 50%, #000 78%, transparent 100%);
+  background: transparent;
+  -webkit-mask-image: radial-gradient(ellipse 92% 94% at 50% 50%, #000 80%, transparent 100%);
+  mask-image: radial-gradient(ellipse 92% 94% at 50% 50%, #000 80%, transparent 100%);
 }
 
 .robot-video,
@@ -149,9 +150,10 @@ button {
   display: block;
   pointer-events: none;
   user-select: none;
+  background: transparent;
   object-fit: cover;
-  object-position: 60% center;
-  transform: scale(1.08);
+  object-position: center center;
+  transform: scale(1.05);
   transform-origin: center center;
 }
 
