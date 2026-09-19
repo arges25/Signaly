@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<title>Signaly</title>
+<meta name="description" content="Signaly — rappels et rendez-vous simples, à la voix ou en un geste.">
+<meta name="theme-color" content="#F8F6F2">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Signaly">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- Logo -->
+  <header class="header">
+    <div class="logo">
+      <span class="logo-text">Signaly</span>
+      <svg class="logo-bell" viewBox="0 0 64 64" aria-hidden="true">
+        <path class="bell-wave bell-wave-1" d="M44 14 C 50 12, 55 15, 57 20" fill="none" stroke-linecap="round"/>
+        <path class="bell-wave bell-wave-2" d="M46 20 C 50 19, 53 21, 54 24" fill="none" stroke-linecap="round"/>
+        <path class="bell-body" d="M32 16 C 24 16, 20 22, 20 30 L20 36 C20 40, 18 42, 16 44 L48 44 C 46 42, 44 40, 44 36 L44 30 C 44 22, 40 16, 32 16 Z"/>
+        <path class="bell-clapper" d="M26 47 a6 6 0 0 0 12 0 Z"/>
+      </svg>
+    </div>
+    <span class="logo-underline" aria-hidden="true"></span>
+  </header>
+
+  <!-- Robot + speech bubble + alert -->
+  <section class="robot-section">
+    <div class="robot-stage">
+      <video
+        class="robot-video"
+        id="robotVideo"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        poster="assets/robot-fallback.png">
+        <source src="assets/robot.mp4" type="video/mp4">
+      </video>
+      <img class="robot-fallback" id="robotFallback" src="assets/robot-fallback.png" alt="Robot Signaly" hidden>
+    </div>
+
+    <div class="robot-side">
+      <div class="speech-bubble">
+        <span>Que puis-je faire&nbsp;?</span>
+      </div>
+
+      <button class="alert-card" id="alertCard" hidden type="button">
+        <span class="alert-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c-3.3 0-6 2.7-6 6v3.6c0 .5-.2 1-.5 1.4L4 16h16l-1.5-2c-.3-.4-.5-.9-.5-1.4V9c0-3.3-2.7-6-6-6z"/><path d="M9.5 18a2.5 2.5 0 0 0 5 0"/></svg>
+          <span class="alert-dot"></span>
+        </span>
+        <span class="alert-text">
+          <strong>Alerte</strong>
+          <span id="alertMessage">—</span>
+        </span>
+        <svg class="alert-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- Microphone -->
+  <div class="mic-wrap">
+    <button id="micButton" class="mic-button" type="button" aria-label="Parler à Signaly">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 15a3.5 3.5 0 0 0 3.5-3.5V6a3.5 3.5 0 0 0-7 0v5.5A3.5 3.5 0 0 0 12 15z"/>
+        <path d="M18.5 11.5a6.5 6.5 0 0 1-13 0" fill="none"/>
+        <path d="M12 18v3" fill="none"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Rappel / Rendez-vous -->
+  <div class="action-buttons">
+    <button id="btnReminder" class="pill-button" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c-3.3 0-6 2.7-6 6v3.6c0 .5-.2 1-.5 1.4L4 16h16l-1.5-2c-.3-.4-.5-.9-.5-1.4V9c0-3.3-2.7-6-6-6z"/><path d="M9.5 18a2.5 2.5 0 0 0 5 0"/></svg>
+      <span>Rappel</span>
+    </button>
+    <button id="btnAppointment" class="pill-button" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5.5" width="16" height="15" rx="2.5"/><path d="M4 10h16" fill="none"/><path d="M8.5 3.5v3" fill="none"/><path d="M15.5 3.5v3" fill="none"/></svg>
+      <span>Rendez-vous</span>
+    </button>
+  </div>
+
+  <!-- Calendrier -->
+  <section class="calendar-card" aria-label="Calendrier">
+    <div class="calendar-header">
+      <button id="calPrev" class="calendar-nav" type="button" aria-label="Mois précédent">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none"/></svg>
+      </button>
+      <span id="calendarTitle" class="calendar-title">—</span>
+      <button id="calNext" class="calendar-nav" type="button" aria-label="Mois suivant">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none"/></svg>
+      </button>
+    </div>
+    <div class="calendar-weekdays">
+      <span>Lun</span><span>Mar</span><span>Mer</span><span>Jeu</span><span>Ven</span><span>Sam</span><span>Dim</span>
+    </div>
+    <div class="calendar-grid" id="calendarGrid"></div>
+  </section>
+
+</div>
+
+<!-- Overlay -->
+<div class="overlay" id="overlay" hidden></div>
+
+<!-- Listening indicator -->
+<div class="sheet" id="listeningSheet" hidden role="dialog" aria-modal="true">
+  <div class="sheet-handle"></div>
+  <div class="listening-indicator">
+    <span class="listening-dot"></span>
+    <span class="listening-dot"></span>
+    <span class="listening-dot"></span>
+  </div>
+  <p class="listening-label">Je vous écoute…</p>
+  <p class="listening-transcript" id="listeningTranscript"></p>
+  <button class="btn btn-ghost" id="listeningCancel" type="button">Annuler</button>
+</div>
+
+<!-- Text fallback (no SpeechRecognition) -->
+<div class="sheet" id="textFallbackSheet" hidden role="dialog" aria-modal="true">
+  <div class="sheet-handle"></div>
+  <h2 class="sheet-title">Écrire ma demande</h2>
+  <p class="sheet-subtitle">La reconnaissance vocale n'est pas disponible sur cet appareil. Écrivez votre phrase :</p>
+  <textarea id="textFallbackInput" class="text-input" rows="3" placeholder="Ex : Rendez-vous dentiste le 30 juin à 14h"></textarea>
+  <div class="sheet-actions">
+    <button class="btn btn-ghost" id="textFallbackCancel" type="button">Annuler</button>
+    <button class="btn btn-primary" id="textFallbackSubmit" type="button">Analyser</button>
+  </div>
+</div>
+
+<!-- Confirmation après compréhension -->
+<div class="sheet" id="confirmSheet" hidden role="dialog" aria-modal="true">
+  <div class="sheet-handle"></div>
+  <h2 class="sheet-title" id="confirmTypeLabel">Rappel</h2>
+
+  <div class="field">
+    <label for="confirmTitle">Titre</label>
+    <input type="text" id="confirmTitle" class="text-input">
+  </div>
+  <div class="field-row">
+    <div class="field">
+      <label for="confirmDate">Date</label>
+      <input type="date" id="confirmDate" class="text-input">
+    </div>
+    <div class="field">
+      <label for="confirmTime">Heure</label>
+      <input type="time" id="confirmTime" class="text-input">
+    </div>
+  </div>
+  <p class="confirm-hint" id="confirmHint"></p>
+
+  <div class="sheet-actions">
+    <button class="btn btn-ghost" id="confirmCancel" type="button">Annuler</button>
+    <button class="btn btn-primary" id="confirmSave" type="button">Enregistrer</button>
+  </div>
+</div>
+
+<!-- Nouveau rappel -->
+<div class="sheet" id="reminderSheet" hidden role="dialog" aria-modal="true">
+  <div class="sheet-handle"></div>
+  <h2 class="sheet-title">Nouveau rappel</h2>
+
+  <div class="field">
+    <label for="reminderTitle">Titre</label>
+    <input type="text" id="reminderTitle" class="text-input" placeholder="Ex : Appeler Julien">
+  </div>
+  <div class="field-row">
+    <div class="field">
+      <label for="reminderDate">Date</label>
+      <input type="date" id="reminderDate" class="text-input">
+    </div>
+    <div class="field">
+      <label for="reminderTime">Heure</label>
+      <input type="time" id="reminderTime" class="text-input">
+    </div>
+  </div>
+  <label class="switch-row">
+    <span>Sonnerie activée</span>
+    <span class="switch">
+      <input type="checkbox" id="reminderSound" checked>
+      <span class="switch-track"><span class="switch-thumb"></span></span>
+    </span>
+  </label>
+
+  <div class="sheet-actions">
+    <button class="btn btn-ghost" id="reminderCancel" type="button">Annuler</button>
+    <button class="btn btn-primary" id="reminderSave" type="button">Enregistrer le rappel</button>
+  </div>
+</div>
+
+<!-- Nouveau rendez-vous -->
+<div class="sheet" id="appointmentSheet" hidden role="dialog" aria-modal="true">
+  <div class="sheet-handle"></div>
+  <h2 class="sheet-title">Nouveau rendez-vous</h2>
+
+  <div class="field">
+    <label for="appointmentTitle">Titre du rendez-vous</label>
+    <input type="text" id="appointmentTitle" class="text-input" placeholder="Ex : Dentiste">
+  </div>
+  <div class="field-row">
+    <div class="field">
+      <label for="appointmentDate">Date</label>
+      <input type="date" id="appointmentDate" class="text-input">
+    </div>
+    <div class="field">
+      <label for="appointmentTime">Heure</label>
+      <input type="time" id="appointmentTime" class="text-input">
+    </div>
+  </div>
+
+  <p class="field-label">Notifications</p>
+  <div class="checkbox-list">
+    <label class="checkbox-row">
+      <input type="checkbox" id="notif2d" checked>
+      <span class="checkbox-box"></span>
+      <span>2 jours avant</span>
+    </label>
+    <label class="checkbox-row">
+      <input type="checkbox" id="notif1d" checked>
+      <span class="checkbox-box"></span>
+      <span>1 jour avant</span>
+    </label>
+    <label class="checkbox-row checkbox-row-secondary">
+      <input type="checkbox" id="notif2h">
+      <span class="checkbox-box"></span>
+      <span>2 heures avant</span>
+    </label>
+    <label class="checkbox-row checkbox-row-secondary">
+      <input type="checkbox" id="notif30m">
+      <span class="checkbox-box"></span>
+      <span>30 minutes avant</span>
+    </label>
+  </div>
+
+  <div class="sheet-actions">
+    <button class="btn btn-ghost" id="appointmentCancel" type="button">Annuler</button>
+    <button class="btn btn-primary" id="appointmentSave" type="button">Enregistrer le rendez-vous</button>
+  </div>
+</div>
+
+<!-- Vue d'une journée -->
+<div class="sheet" id="dayViewSheet" hidden role="dialog" aria-modal="true">
+  <div class="sheet-handle"></div>
+  <h2 class="sheet-title" id="dayViewTitle">—</h2>
+  <div class="day-events" id="dayEventsList"></div>
+  <div class="sheet-actions">
+    <button class="btn btn-ghost" id="dayViewClose" type="button">Fermer</button>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast" hidden></div>
+
+<script src="js/storage.js"></script>
+<script src="js/parser.js"></script>
+<script src="js/reminders.js"></script>
+<script src="js/calendar.js"></script>
+<script src="js/speech.js"></script>
+<script src="js/notifications.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
