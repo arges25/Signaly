@@ -4,7 +4,7 @@
  * fonctionner aussi bien à la racine d'un domaine que sous un sous-dossier
  * GitHub Pages (https://utilisateur.github.io/signaly/).
  */
-const CACHE_NAME = "signaly-cache-v8";
+const CACHE_NAME = "signaly-cache-v9";
 
 const APP_SHELL = [
   "index.html",
