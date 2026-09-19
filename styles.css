@@ -137,8 +137,8 @@ button {
   flex-shrink: 0;
   overflow: hidden;
   background: transparent;
-  -webkit-mask-image: radial-gradient(ellipse 92% 94% at 50% 50%, #000 80%, transparent 100%);
-  mask-image: radial-gradient(ellipse 92% 94% at 50% 50%, #000 80%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 62% 68% at 50% 46%, #000 30%, transparent 100%);
+  mask-image: radial-gradient(ellipse 62% 68% at 50% 46%, #000 30%, transparent 100%);
 }
 
 .robot-video,
