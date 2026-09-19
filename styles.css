@@ -321,9 +321,7 @@ button {
   user-select: none;
   background: transparent;
   object-fit: cover;
-  object-position: center 30%;
-  transform: scale(2.4);
-  transform-origin: center center;
+  object-position: center center;
 }
 
 /* ---------------- Calendrier ---------------- */
