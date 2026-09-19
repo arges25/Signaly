@@ -36,41 +36,24 @@
     <span class="logo-underline" aria-hidden="true"></span>
   </header>
 
-  <!-- Robot + speech bubble + alert -->
-  <section class="robot-section">
-    <div class="robot-stage">
-      <video
-        class="robot-video"
-        id="robotVideo"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="auto"
-        poster="assets/robot-fallback.png">
-        <source src="assets/robot-final.mp4" type="video/mp4">
-      </video>
-      <img class="robot-fallback" id="robotFallback" src="assets/robot-fallback.png" alt="Robot Signaly" hidden>
+  <!-- Bulle + alerte -->
+  <div class="top-row">
+    <div class="speech-bubble">
+      <span>Que puis-je faire&nbsp;?</span>
     </div>
 
-    <div class="robot-side">
-      <div class="speech-bubble">
-        <span>Que puis-je faire&nbsp;?</span>
-      </div>
-
-      <button class="alert-card" id="alertCard" hidden type="button">
-        <span class="alert-icon">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c-3.3 0-6 2.7-6 6v3.6c0 .5-.2 1-.5 1.4L4 16h16l-1.5-2c-.3-.4-.5-.9-.5-1.4V9c0-3.3-2.7-6-6-6z"/><path d="M9.5 18a2.5 2.5 0 0 0 5 0"/></svg>
-          <span class="alert-dot"></span>
-        </span>
-        <span class="alert-text">
-          <strong>Alerte</strong>
-          <span id="alertMessage">—</span>
-        </span>
-        <svg class="alert-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-      </button>
-    </div>
-  </section>
+    <button class="alert-card" id="alertCard" hidden type="button">
+      <span class="alert-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c-3.3 0-6 2.7-6 6v3.6c0 .5-.2 1-.5 1.4L4 16h16l-1.5-2c-.3-.4-.5-.9-.5-1.4V9c0-3.3-2.7-6-6-6z"/><path d="M9.5 18a2.5 2.5 0 0 0 5 0"/></svg>
+        <span class="alert-dot"></span>
+      </span>
+      <span class="alert-text">
+        <strong>Alerte</strong>
+        <span id="alertMessage">—</span>
+      </span>
+      <svg class="alert-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+  </div>
 
   <!-- Microphone -->
   <div class="mic-wrap">
@@ -95,22 +78,39 @@
     </button>
   </div>
 
-  <!-- Calendrier -->
-  <section class="calendar-card" aria-label="Calendrier">
-    <div class="calendar-header">
-      <button id="calPrev" class="calendar-nav" type="button" aria-label="Mois précédent">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none"/></svg>
-      </button>
-      <span id="calendarTitle" class="calendar-title">—</span>
-      <button id="calNext" class="calendar-nav" type="button" aria-label="Mois suivant">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none"/></svg>
-      </button>
+  <!-- Robot (derrière le calendrier) + Calendrier -->
+  <div class="calendar-wrap">
+    <div class="robot-peek">
+      <video
+        class="robot-video"
+        id="robotVideo"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        poster="assets/robot-fallback.png">
+        <source src="assets/robot-final.mp4" type="video/mp4">
+      </video>
+      <img class="robot-fallback" id="robotFallback" src="assets/robot-fallback.png" alt="Robot Signaly" hidden>
     </div>
-    <div class="calendar-weekdays">
-      <span>Lun</span><span>Mar</span><span>Mer</span><span>Jeu</span><span>Ven</span><span>Sam</span><span>Dim</span>
-    </div>
-    <div class="calendar-grid" id="calendarGrid"></div>
-  </section>
+
+    <section class="calendar-card" aria-label="Calendrier">
+      <div class="calendar-header">
+        <button id="calPrev" class="calendar-nav" type="button" aria-label="Mois précédent">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none"/></svg>
+        </button>
+        <span id="calendarTitle" class="calendar-title">—</span>
+        <button id="calNext" class="calendar-nav" type="button" aria-label="Mois suivant">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none"/></svg>
+        </button>
+      </div>
+      <div class="calendar-weekdays">
+        <span>Lun</span><span>Mar</span><span>Mer</span><span>Jeu</span><span>Ven</span><span>Sam</span><span>Dim</span>
+      </div>
+      <div class="calendar-grid" id="calendarGrid"></div>
+    </section>
+  </div>
 
 </div>
 

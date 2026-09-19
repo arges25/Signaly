@@ -63,7 +63,7 @@ button {
   max-width: 480px;
   margin: 0 auto;
   min-height: 100vh;
-  padding: max(20px, env(safe-area-inset-top)) 18px calc(32px + env(safe-area-inset-bottom));
+  padding: max(12px, env(safe-area-inset-top)) 18px calc(12px + env(safe-area-inset-bottom));
   display: flex;
   flex-direction: column;
 }
@@ -74,8 +74,8 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 8px;
-  margin-bottom: 18px;
+  padding-top: 2px;
+  margin-bottom: 10px;
 }
 
 .logo {
@@ -87,16 +87,16 @@ button {
 .logo-text {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 38px;
+  font-size: 32px;
   color: var(--navy);
   letter-spacing: -0.5px;
   line-height: 1;
 }
 
 .logo-bell {
-  width: 26px;
-  height: 26px;
-  margin-top: -6px;
+  width: 22px;
+  height: 22px;
+  margin-top: -5px;
   flex-shrink: 0;
 }
 
@@ -121,50 +121,14 @@ button {
   margin-right: 34%;
 }
 
-/* ---------------- Robot + speech bubble + alert ---------------- */
+/* ---------------- Bulle + alerte ---------------- */
 
-.robot-section {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  margin-bottom: 18px;
-}
-
-.robot-stage {
-  position: relative;
-  width: 50%;
-  aspect-ratio: 2 / 5;
-  flex-shrink: 0;
-  overflow: hidden;
-  background: transparent;
-  -webkit-mask-image: radial-gradient(ellipse 62% 68% at 50% 46%, #000 30%, transparent 100%);
-  mask-image: radial-gradient(ellipse 62% 68% at 50% 46%, #000 30%, transparent 100%);
-}
-
-.robot-video,
-.robot-fallback {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  pointer-events: none;
-  user-select: none;
-  background: transparent;
-  object-fit: cover;
-  object-position: center center;
-  transform: scale(1.05);
-  transform-origin: center center;
-}
-
-.robot-side {
-  flex: 1;
-  min-width: 0;
+.top-row {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 14px;
-  padding-top: 28px;
+  gap: 8px;
+  margin-bottom: 10px;
 }
 
 .speech-bubble {
@@ -173,7 +137,7 @@ button {
   font-weight: 500;
   font-size: 15px;
   white-space: nowrap;
-  padding: 14px 16px;
+  padding: 12px 16px;
   border-radius: 20px 20px 4px 20px;
   box-shadow: var(--shadow-card);
   max-width: 100%;
@@ -188,7 +152,7 @@ button {
   background: var(--red-bg);
   border: none;
   border-radius: var(--radius-lg);
-  padding: 10px 10px;
+  padding: 9px 10px;
   text-align: left;
   box-shadow: 0 4px 14px rgba(230, 90, 66, 0.08);
   animation: fade-in 0.25s ease;
@@ -262,12 +226,12 @@ button {
 .mic-wrap {
   display: flex;
   justify-content: center;
-  margin: 6px 0 22px;
+  margin: 2px 0 10px;
 }
 
 .mic-button {
-  width: 118px;
-  height: 118px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   background: var(--navy);
   border: 4px solid var(--gold);
@@ -279,8 +243,8 @@ button {
 }
 
 .mic-button svg {
-  width: 44px;
-  height: 44px;
+  width: 38px;
+  height: 38px;
   fill: var(--white);
   stroke: var(--white);
   stroke-width: 1.4;
@@ -304,7 +268,7 @@ button {
 .action-buttons {
   display: flex;
   gap: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
 }
 
 .pill-button {
@@ -316,7 +280,7 @@ button {
   background: var(--white);
   border: none;
   border-radius: var(--radius-full);
-  padding: 15px 10px;
+  padding: 12px 10px;
   box-shadow: var(--shadow-card);
   color: var(--navy);
   font-size: 15.5px;
@@ -335,13 +299,53 @@ button {
   transform: scale(0.98);
 }
 
+/* ---------------- Robot (derrière le calendrier) ---------------- */
+
+.calendar-wrap {
+  position: relative;
+  padding-top: 96px;
+  flex: 1;
+  display: flex;
+}
+
+.robot-peek {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 52%;
+  height: 235px;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+  overflow: hidden;
+  -webkit-mask-image: radial-gradient(ellipse 68% 62% at 50% 30%, #000 30%, transparent 100%);
+  mask-image: radial-gradient(ellipse 68% 62% at 50% 30%, #000 30%, transparent 100%);
+}
+
+.robot-video,
+.robot-fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  background: transparent;
+  object-fit: contain;
+  object-position: top center;
+}
+
 /* ---------------- Calendrier ---------------- */
 
 .calendar-card {
+  position: relative;
+  z-index: 1;
   background: var(--white);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-soft);
-  padding: 20px 16px 22px;
+  padding: 10px 12px 12px;
   flex: 1;
 }
 
@@ -349,7 +353,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 
 .calendar-title {
@@ -399,7 +403,7 @@ button {
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  row-gap: 6px;
+  row-gap: 1px;
 }
 
 .cal-day {
@@ -408,10 +412,10 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 42px;
+  height: 32px;
   background: none;
   border: none;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--navy);
   border-radius: 50%;
@@ -426,8 +430,8 @@ button {
 }
 
 .cal-day .cal-day-num {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
