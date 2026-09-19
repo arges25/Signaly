@@ -107,14 +107,32 @@
   function setupRobotVideo() {
     const video = els.robotVideo;
     const fallback = els.robotFallback;
+    let settled = false;
 
     function useFallback() {
+      if (settled) return;
+      settled = true;
       video.hidden = true;
       fallback.hidden = false;
     }
 
+    function markPlaying() {
+      settled = true;
+    }
+
     video.addEventListener("error", useFallback);
+    video.addEventListener("playing", markPlaying);
+    video.addEventListener("loadeddata", markPlaying);
     video.play().catch(useFallback);
+
+    // Filet de sécurité : certains échecs de décodage ne déclenchent ni
+    // l'évènement "error" ni un rejet de play(). On vérifie networkState
+    // plutôt que readyState : NETWORK_NO_SOURCE (3) signifie que le
+    // navigateur a renoncé, alors qu'un simple chargement lent (réseau 3G)
+    // reste à NETWORK_LOADING (2) et ne doit pas déclencher le repli.
+    setTimeout(() => {
+      if (!settled && video.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) useFallback();
+    }, 3000);
   }
 
   /* ---------------- Microphone ---------------- */
