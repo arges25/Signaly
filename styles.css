@@ -64,7 +64,7 @@ button {
   margin: 0 auto;
   min-height: 100vh;
   min-height: 100svh; /* hauteur réellement visible sur mobile, barre d'adresse comprise */
-  padding: max(10px, env(safe-area-inset-top)) 18px calc(10px + env(safe-area-inset-bottom));
+  padding: max(8px, env(safe-area-inset-top)) 18px calc(8px + env(safe-area-inset-bottom));
   display: flex;
   flex-direction: column;
 }
@@ -139,7 +139,7 @@ button {
   background: var(--red-bg);
   border: none;
   border-radius: var(--radius-lg);
-  padding: 9px 10px;
+  padding: 7px 10px;
   text-align: left;
   box-shadow: 0 4px 14px rgba(230, 90, 66, 0.08);
   animation: fade-in 0.25s ease;
@@ -213,12 +213,13 @@ button {
 .mic-wrap {
   display: flex;
   justify-content: center;
-  margin: 12px 0 0;
+  margin-top: auto;
+  padding-top: 10px;
 }
 
 .mic-button {
-  width: 92px;
-  height: 92px;
+  width: 82px;
+  height: 82px;
   border-radius: 50%;
   background: var(--navy);
   border: 4px solid var(--gold);
@@ -230,8 +231,8 @@ button {
 }
 
 .mic-button svg {
-  width: 34px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
   fill: var(--white);
   stroke: var(--white);
   stroke-width: 1.4;
@@ -286,28 +287,24 @@ button {
   transform: scale(0.98);
 }
 
-/* ---------------- Robot (derrière le calendrier) ---------------- */
+/* ---------------- Robot + Calendrier ---------------- */
 
 .calendar-wrap {
-  position: relative;
-  padding-top: 56px;
-  flex: 1;
   display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .robot-peek {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 34%;
-  aspect-ratio: 1 / 1;
-  z-index: 0;
+  position: relative;
+  width: 38%;
+  aspect-ratio: 5 / 8;
+  margin-bottom: -6px;
   pointer-events: none;
   user-select: none;
   overflow: hidden;
-  -webkit-mask-image: radial-gradient(ellipse 68% 62% at 50% 30%, #000 30%, transparent 100%);
-  mask-image: radial-gradient(ellipse 68% 62% at 50% 30%, #000 30%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 82% 90% at 50% 50%, #000 58%, transparent 100%);
+  mask-image: radial-gradient(ellipse 82% 90% at 50% 50%, #000 58%, transparent 100%);
 }
 
 .robot-video,
@@ -327,13 +324,11 @@ button {
 /* ---------------- Calendrier ---------------- */
 
 .calendar-card {
-  position: relative;
-  z-index: 1;
   background: var(--white);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-soft);
   padding: 10px 12px 12px;
-  flex: 1;
+  width: 100%;
 }
 
 .calendar-header {
@@ -399,7 +394,7 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 32px;
+  height: 29px;
   background: none;
   border: none;
   font-size: 14px;
